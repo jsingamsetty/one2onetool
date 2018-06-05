@@ -44,20 +44,20 @@ node('master') {
 	       echo "Installing the node.js and npm tools"
          
          sh 'chmod 400 Clearpass-testmachine.pem'
- 	       sh "ssh -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' ec2-user@13.232.87.231 'sudo yum install -y gcc-c++ make ; curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash - ; sudo yum install nodejs -y|node -v '"
+ 	       sh 'yum install -y gcc-c++ make ; curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash - ; sudo yum install nodejs -y|node -v '
          
          echo "Installation of node & npm is successful"
        }
 
        stage('Build Docker'){
 
-            sh "ssh -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' ec2-user@13.232.87.231 'chmod +x dockerBuild.sh ; ./dockerBuild.sh'"
+            sh 'chmod +x dockerBuild.sh ; ./dockerBuild.sh'"
        }
 
        stage('Deploy'){
 
          echo 'Push to Repo'
-         sh './dockerPushToRepo.sh'
+         sh './deliver.sh'
 
          echo 'ssh to web server and tell it to pull new image'
          sh 'ssh deploy@xxxxx.xxxxx.com running/xxxxxxx/dockerRun.sh'
