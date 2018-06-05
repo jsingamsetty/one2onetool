@@ -38,7 +38,7 @@ node('master') {
 
          print "Environment will be : ${env.NODE_ENV}"
 	 echo "Installing the node.js and npm tools"
- 	 sh "ssh -i 13.232.87.231 'yum install -y gcc-c++ make ; curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash - ; yum install nodejs -y'"
+ 	 sh "ssh ec2-user@13.232.87.231 'sudo yum install -y gcc-c++ make ; curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash - ; sudo yum install nodejs -y'"
          sh 'node -v ;npm prune ;  npm test'
        }
 
