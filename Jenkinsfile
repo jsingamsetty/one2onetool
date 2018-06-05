@@ -46,7 +46,7 @@ node('master') {
        }
 
        stage('Build Docker'){
-            sh 'scp -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' dockerBuild.sh ec2-user@13.232.87.231:/tmp/'
+            sh 'scp -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' /one2onetool/dockerBuild.sh ec2-user@13.232.87.231:/tmp/'
             sh "ssh -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' ec2-user@13.232.87.231 'chmod +x /tmp/dockerBuild.sh ; ./tmp/dockerBuild.sh'"
        }
 
