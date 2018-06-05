@@ -40,14 +40,14 @@ node('master') {
          echo "Installing the node.js and npm tools"
          
          sh 'chmod 400 Clearpass-testmachine.pem'
-         sh "ssh -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' ec2-user@13.232.87.231 'sudo yum install -y gcc-c++ make ; curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash - ; git clone https://github.com/jsingamsetty/one2onetool.git /tmp/ ; sudo yum install nodejs -y|node -v '"
+         sh "ssh -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' ec2-user@13.232.87.231 'sudo yum install -y gcc-c++ make ; curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash - ; git clone https://github.com/jsingamsetty/one2onetool.git /mnt/ ; sudo yum install nodejs -y|node -v '"
          
          echo "Installation of node & npm is successful"
        }
 
        stage('Build Docker'){
             
-            sh "ssh -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' ec2-user@13.232.87.231 'chmod +x /tmp/one2onetool/dockerBuild.sh ; ./tmp/one2onetool/dockerBuild.sh'"
+            sh "ssh -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' ec2-user@13.232.87.231 'chmod +x /mnt/one2onetool/dockerBuild.sh ; ./mnt/one2onetool/dockerBuild.sh'"
        }
 
        stage('Deploy'){
