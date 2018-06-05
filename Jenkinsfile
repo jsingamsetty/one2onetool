@@ -51,7 +51,7 @@ node('master') {
 
        stage('Build Docker'){
 
-            sh 'chmod +x dockerBuild.sh ; ./dockerBuild.sh'
+            sh "ssh -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' ec2-user@13.232.87.231 'chmod +x dockerBuild.sh ; ./dockerBuild.sh'"
        }
 
        stage('Deploy'){
