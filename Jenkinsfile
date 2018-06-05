@@ -47,7 +47,8 @@ node('master') {
 
        stage('Build Docker'){
             
-            sh "ssh -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' ec2-user@13.232.87.231 './mnt/one2onetool/dockerBuild.sh'"
+            sh "ssh -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' ec2-user@13.232.87.231 'yum update -y ;
+yum -y install docker ; /sbin/service docker start ; docker info'"
        }
 
        stage('Deploy'){
