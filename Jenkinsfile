@@ -40,7 +40,7 @@ node('master') {
 	       echo "Installing the node.js and npm tools"
          
          sh 'chmod 400 Clearpass-testmachine.pem'
- 	       sh 'sudo yum install -y gcc-c++ make ; curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash - ; sudo yum install nodejs -y|node -v '
+ 	       sh 'yum install -y gcc-c++ make ; curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash - ; yum install nodejs -y|node -v '
          
          echo "Installation of node & npm is successful"
        }
