@@ -35,11 +35,7 @@ node('master') {
        stage('Test'){
 
          env.NODE_ENV = "test"
-         environment {
-           AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
-           AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
-           key_file = Clearpass-testmachine.pem
-       }
+      
          print "Environment will be : ${env.NODE_ENV}"
 	       echo "Installing the node.js and npm tools"
          
