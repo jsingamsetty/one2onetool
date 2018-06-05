@@ -38,12 +38,13 @@ node('master') {
          environment {
            AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
            AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+           key_file = Clearpass-testmachine.pem
        }
          print "Environment will be : ${env.NODE_ENV}"
 	       echo "Installing the node.js and npm tools"
          
          sh 'chmod 400 Clearpass-testmachine.pem'
- 	       sh "ssh -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' ec2-user@13.232.87.231 'sudo yum install -y gcc-c++ make ; curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash - ; sudo yum install nodejs -y|node -v '"
+ 	       sh "ssh -o StrictHostKeyChecking=no -i '$key_file' ec2-user@13.232.87.231 'sudo yum install -y gcc-c++ make ; curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash - ; sudo yum install nodejs -y|node -v '"
          
          echo "Installation of node & npm is successful"
        }
