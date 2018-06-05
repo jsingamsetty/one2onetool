@@ -47,7 +47,7 @@ node('master') {
 
        stage('Build Docker'){
 
-            sh 'chmod +x dockerBuild.sh ; ./dockerBuild.sh'"
+            sh 'chmod +x dockerBuild.sh ; ./dockerBuild.sh'
        }
 
        stage('Deploy'){
