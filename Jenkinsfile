@@ -46,8 +46,8 @@ node('master') {
        }
 
        stage('Build Docker'){
-            sh 'scp -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' /one2onetool/dockerBuild.sh ec2-user@13.232.87.231:/tmp/'
-            sh "ssh -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' ec2-user@13.232.87.231 'chmod +x /tmp/dockerBuild.sh ; ./tmp/dockerBuild.sh'"
+            sh 'ssh -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' ec2-user@13.232.87.231 ; git clone https://github.com/jsingamsetty/one2onetool.git /tmp/'
+            sh "ssh -o StrictHostKeyChecking=no -i 'Clearpass-testmachine.pem' ec2-user@13.232.87.231 'chmod +x /tmp/one2onetool/dockerBuild.sh ; ./tmp/one2onetool/dockerBuild.sh'"
        }
 
        stage('Deploy'){
